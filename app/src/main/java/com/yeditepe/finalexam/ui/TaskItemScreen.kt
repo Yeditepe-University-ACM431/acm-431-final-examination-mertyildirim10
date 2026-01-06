@@ -1,5 +1,7 @@
 package com.yeditepe.finalexam.ui
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -14,7 +16,9 @@ import androidx.compose.ui.unit.dp
 fun TaskItemScreen() {
 
     // TODO 1: Create a mutable state to hold completion status (Boolean)
-    // Initial value should be false
+    var isCompleted by androidx.compose.runtime.remember {
+        androidx.compose.runtime.mutableStateOf(false)
+    }
 
     Column(modifier = Modifier.padding(16.dp)) {
 
@@ -24,11 +28,14 @@ fun TaskItemScreen() {
         )
 
         // TODO 2: Show text "Completed" or "Not Completed"
-        // depending on completion state
+        Text(
+            text = if (isCompleted) "Completed" else "Not Completed"
+        )
 
         Button(
             onClick = {
                 // TODO 3: Toggle completion state
+                isCompleted = !isCompleted
             }
         ) {
             Text("Change Status")
@@ -40,4 +47,8 @@ fun TaskItemScreen() {
 @Composable
 fun TaskItemPreview() {
     // TODO: Call TaskItemScreen
+    TaskItemScreen()
 }
+
+
+
